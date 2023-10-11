@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ATM Program</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Interface</title>
 </head>
 <body>
-    <h1>Welcome to State Bank of India</h1>
+    <h1>Welcome to the ATM</h1>
     <form action="/check_pin" method="post">
-        <label for="pin">Enter your 4 digit PIN number:</label>
-        <input type="password" id="pin" name="pin" maxlength="4">
-        <input type="submit" value="Submit">
+        <label for="pin">Enter PIN:</label>
+        <input type="text" id="pin" name="pin" required>
+        <button type="submit">Check PIN</button>
     </form>
-    <div id="result"></div>
+
+    <form action="/withdraw" method="post">
+        <button type="submit">Withdraw Cash</button>
+    </form>
+
+    <form action="/balance_enquiry" method="post">
+        <button type="submit">Balance Enquiry</button>
+    </form>
+
+    <form action="/fast_cash" method="post">
+        <button type="submit">Fast Cash Options</button>
+    </form>
+
+    <!-- Add a form for withdrawing cash, fast cash, etc. if needed -->
 </body>
 </html>
 
