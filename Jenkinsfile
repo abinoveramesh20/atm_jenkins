@@ -14,31 +14,23 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: "${DOCKER_REGISTRY_CREDS}", passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
           sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin docker.io"
           sh 'docker push $DOCKER_BFLASK_IMAGE'
-        }
+          }
       }
-    
- stage('Gmail'){
-        steps{
-            emailext body: "*${currentBuild.currentResult}:* Job Name: ${env.JOB_NAME} || Build Number: ${env.BUILD_NUMBER} || More information at: ${env.BUILD_URL}",
-                subject: 'Declarative Pipeline Build Status',
-                to: 'abinove1999@gmail.com'
-        }
     }
-}
+    
+  }
 
 post{
       always{
             sh 'docker rm -f mypycont'
-            sh 'docker run --name mypycont -d -p 3000:5000 my-flask'
+            sh 'docker run --name mypycont -d -p 9000:5000 my-flask'
+            mail to: "abinove1999@gmail.com",
+            subject: "Notification mail from jenkins",
+            body: "pipeline successfull"
         }
 }
 
-    
-
-
 }
-    
-
   
 
 
