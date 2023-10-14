@@ -23,7 +23,7 @@ pipeline {
 post{
       always{
             sh 'docker rm -f mypycont'
-            sh 'docker run -it --name mypycont -d -p 5000:80 my-flask'
+            sh 'docker run -it --name mypycont -d -p 5000:8000 my-flask'
             mail to: "abinove1999@gmail.com",
             subject: "Notification mail from jenkins",
             body: "pipeline successfull"
